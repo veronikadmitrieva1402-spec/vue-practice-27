@@ -1,38 +1,34 @@
-# vue-practice-27
+# Контрольная работа №5
 
-This template should help get you started developing with Vue 3 in Vite.
+## Быстрый старт
+### Установка и запуск:
 
-## Recommended IDE Setup
+1. cd vue-practice-27
+2. npm install
+3. npm run dev
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Открыть в браузере:
 
-## Recommended Browser Setup
+Перейдите по адресу: http://localhost:5173/
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Основные разделы
+### Генератор (Главная страница)
 
-## Customize configuration
+1. Случайная палитра - кнопка "Случайная палитра".
+2. Выбор базового цвета.
+3. Типы палитр - аналогичная, монохромная, триада, комплементарная.
+4. Настроения - спокойная, энергичная, профессиональная палитры.
+5. Управление цветами - клик по цвету копирует HEX, кнопка 0/1 фиксирует цвет.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Библиотека
 
-## Project Setup
+1. Сохранение палитр - из раздела Генератор
+2. Поиск и фильтрация - по названию и тегам
+3. Избранное - отмечайте звёздочкой 0/1
+4. Экспорт - скачивание палитр в JSON
 
-```sh
-npm install
-```
+### Анализ доступности
 
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Проверка контраста - по стандарту WCAG AA/AAA
+2. Цветовой круг - визуализация гармоничных цветов
+3. Подбор акцентов - автоматический подбор акцентных цветов
