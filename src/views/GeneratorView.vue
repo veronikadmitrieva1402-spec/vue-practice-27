@@ -270,29 +270,24 @@ const selectPaletteType = (type) => {
   }
 }
 
-// Обновление количества цветов
 const updateColorCount = () => {
   const newCount = parseInt(colorCount.value)
   
   if (palette.value.length < newCount) {
-    // Добавляем цвета
     for (let i = palette.value.length; i < newCount; i++) {
       palette.value.push(generateRandomColor())
       locked.value.push(false)
     }
   } else if (palette.value.length > newCount) {
-    // Убираем цвета
     palette.value = palette.value.slice(0, newCount)
     locked.value = locked.value.slice(0, newCount)
   }
 }
 
-// Закрепить/открепить цвет
 const toggleLock = (index) => {
   locked.value[index] = !locked.value[index]
 }
 
-// Копирование в буфер
 const copyToClipboard = async (color) => {
   try {
     await navigator.clipboard.writeText(color)
@@ -306,7 +301,6 @@ const copyToClipboard = async (color) => {
   }
 }
 
-// Сохранение в localStorage
 const saveToLocalStorage = () => {
   const data = {
     palette: palette.value,
@@ -318,7 +312,6 @@ const saveToLocalStorage = () => {
   localStorage.setItem('colorPalette', JSON.stringify(data))
 }
 
-// Загрузка из localStorage
 const loadFromLocalStorage = () => {
   const saved = localStorage.getItem('colorPalette')
   if (saved) {
@@ -330,7 +323,6 @@ const loadFromLocalStorage = () => {
       baseColor.value = data.baseColor || '#4a6cf7'
       selectedType.value = data.selectedType || 'analogous'
       
-      // Если палитра пустая, генерируем
       if (palette.value.length === 0) {
         generateRandomPalette()
       }
@@ -343,14 +335,12 @@ const loadFromLocalStorage = () => {
   }
 }
 
-// Автосохранение при изменениях
 watch(palette, saveToLocalStorage, { deep: true })
 watch(locked, saveToLocalStorage, { deep: true })
 watch(colorCount, saveToLocalStorage)
 watch(baseColor, saveToLocalStorage)
 watch(selectedType, saveToLocalStorage)
 
-// Инициализация
 onMounted(() => {
   loadFromLocalStorage()
 })

@@ -52,7 +52,6 @@ defineProps({
 
 const darkMode = ref(false)
 
-// Определение контрастного цвета
 const getContrastColor = (hexColor) => {
   const rgb = hexToRgb(hexColor)
   if (!rgb) return '#000'

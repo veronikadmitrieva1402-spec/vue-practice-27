@@ -2,7 +2,6 @@
   <div class="demo-container">
     <h2>Пример 3: События и вычисляемые свойства</h2>
 
-    <!-- Таймер изучения -->
     <div class="timer-section">
       <h3>Таймер изучения</h3>
       <div class="timer-display">
@@ -21,7 +20,6 @@
       </div>
     </div>
 
-    <!-- Список сессий изучения -->
     <div class="sessions-section">
       <h3>Сессии изучения</h3>
       
@@ -45,7 +43,6 @@
         </div>
       </div>
 
-      <!-- Статистика сессий -->
       <div class="sessions-stats">
         <p>Всего сессий: {{ totalSessions }}</p>
         <p>Общее время: {{ formatTime(totalStudyTime) }}</p>
@@ -53,18 +50,15 @@
       </div>
     </div>
 
-    <!-- Быстрые действия с модификаторами событий -->
     <div class="quick-actions">
       <h3>Быстрые действия</h3>
       <div class="action-buttons">
-        <!-- Модификатор .prevent предотвращает действие по умолчанию -->
         <button @click.prevent="addQuickSession(30)" class="action-button">
           +30 мин
         </button>
         <button @click.prevent="addQuickSession(60)" class="action-button">
           +1 час
         </button>
-        <!-- Модификатор .once срабатывает только один раз -->
         <button @click.once="addOneTimeSession" class="action-button special">
           Одноразовая сессия
         </button>
@@ -80,15 +74,12 @@ export default {
   name: 'EventComputedDemo',
   
   setup() {
-    // Таймер
     const elapsedTime = ref(0)
     const isRunning = ref(false)
     let timerInterval = null
 
-    // Сессии изучения
     const studySessions = ref([])
 
-    // Вычисляемые свойства для статистики
     const totalSessions = computed(() => studySessions.value.length)
 
     const totalStudyTime = computed(() => 
@@ -104,7 +95,6 @@ export default {
       [...studySessions.value].sort((a, b) => new Date(b.date) - new Date(a.date))
     )
 
-    // Методы таймера
     const startTimer = () => {
       isRunning.value = true
       timerInterval = setInterval(() => {
@@ -123,7 +113,6 @@ export default {
     const resetTimer = () => {
       pauseTimer()
       
-      // Сохраняем сессию если прошло больше 30 секунд
       if (elapsedTime.value >= 30) {
         studySessions.value.push({
           id: Date.now(),
@@ -135,13 +124,12 @@ export default {
       elapsedTime.value = 0
     }
 
-    // Методы для сессий
     const removeSession = (sessionId) => {
       studySessions.value = studySessions.value.filter(session => session.id !== sessionId)
     }
 
     const addQuickSession = (minutes) => {
-      const duration = minutes * 60 // переводим в секунды
+      const duration = minutes * 60 
       studySessions.value.push({
         id: Date.now(),
         date: new Date().toISOString(),
@@ -154,7 +142,6 @@ export default {
       alert('Одноразовая сессия добавлена! Эта кнопка больше не сработает.')
     }
 
-    // Вспомогательные методы
     const formatTime = (seconds) => {
       const mins = Math.floor(seconds / 60)
       const secs = seconds % 60
@@ -165,7 +152,6 @@ export default {
       return new Date(dateString).toLocaleString('ru-RU')
     }
 
-    // Очистка при размонтировании компонента
     onUnmounted(() => {
       if (timerInterval) {
         clearInterval(timerInterval)

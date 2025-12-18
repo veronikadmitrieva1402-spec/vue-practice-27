@@ -326,13 +326,11 @@ const goToGenerator = () => {
 const saveEdit = () => {
   if (!editingPalette.value) return
   
-  // Обновляем теги
   editingPalette.value.tags = editingPalette.value.tagsString
     .split(',')
     .map(tag => tag.trim())
     .filter(tag => tag.length > 0)
   
-  // Находим и обновляем палитру
   const index = paletteStore.savedPalettes.findIndex(p => p.id === editingPalette.value.originalId)
   if (index !== -1) {
     const { originalId, tagsString, ...updatedPalette } = editingPalette.value
